@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cheesy Letter ✨</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:ital,wght@0,600;1,500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-1: #0f0c29;
+      --bg-2: #302b63;
+      --bg-3: #24243e;
+      --card: rgba(255,255,255,.12);
+      --glass: rgba(255,255,255,.25);
+      --text: #f7f7fb;
+      --muted: #d9d9e3;
+      --accent: #ffd166;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      height: 100%;
+      margin: 0;
+      background: linear-gradient(135deg, var(--bg-1), var(--bg-2) 50%, var(--bg-3));
+      color: var(--text);
+      font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+    .wrap {
+      min-height: 100%;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+    .card {
+      width: min(840px, 96vw);
+      padding: 28px;
+      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.08));
+      border: 1px solid rgba(255,255,255,.22);
+      box-shadow: 0 20px 40px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.25);
+      backdrop-filter: blur(10px);
+      text-align: center;
+    }
+    h1 {
+      margin: 8px 0 18px;
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      letter-spacing: .3px;
+    }
+    p.subtitle {
+      margin: 0 0 22px;
+      opacity: .85;
+      font-weight: 300;
+    }
+    button.reveal {
+      appearance: none;
+      border: 0;
+      border-radius: 999px;
+      padding: 14px 22px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      background: radial-gradient(120% 120% at 30% 20%, #ffe29f, #ffa99f 60%, #ff719a);
+      color: #1a1a1f;
+      transition: transform .15s ease, filter .15s ease, box-shadow .15s ease;
+      box-shadow: 0 10px 20px rgba(0,0,0,.25), inset 0 -2px 0 rgba(0,0,0,.2);
+    }
+    button.reveal:hover { transform: translateY(-1px); filter: brightness(1.05); }
+    button.reveal:active { transform: translateY(0); }
+    .letter {
+      margin-top: 18px;
+      text-align: left;
+      line-height: 1.7;
+      font-size: 16px;
+      color: var(--muted);
+      white-space: pre-wrap;
+      display: none;
+      animation: fadeIn .6s ease forwards;
+      border-radius: 14px;
+      border: 1px dashed rgba(255,255,255,.25);
+      padding: 18px 16px;
+      background: rgba(0,0,0,.18);
+      position: relative;
+      overflow: hidden;
+    }
+    .letter::before {
+      content: "💌";
+      position: absolute;
+      top: 10px; right: 12px;
+      font-size: 20px;
+      opacity: .7;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .footer-note {
+      margin-top: 14px;
+      font-size: 13px;
+      opacity: .7;
+    }
+    .hidden {
+      display: none !important;
+    }
+    /* Small screen tweaks */
+    @media (max-width: 480px) {
+      .card { padding: 20px; }
+      .letter { font-size: 15px; }
+    }
+    /* Visually-hidden iframe (music) */
+    .player-wrap {
+      width: 0;
+      height: 0;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>for you, from me</h1>
+      <p class="subtitle">press the button and let the music play 🎶</p>
+
+      <button class="reveal" id="openBtn">this might be cheesy but kindly open</button>
+
+      <div class="letter" id="letter">
+Hiii.
+
+While i was playing i just thought of you. Thats why im writing this letter. First i would like to apologize for the this i’ve done and for the pain and traumas i’ve caused, but after all that my feelings haven’t changed. Still genuine. Thank you for unblocking me, my patience paid off. Im glad i was able to talk to you tonight. I dont know what you did but you’re someone special to me i dont know if i am too for you, but it doesnt matter as long as i have this feelings for you. I want to thank you for giving me another chance to talk to you, they say nga na 3rd time the charm. But this time a lot of things has changed and i’ll make sure not to make you sad and cry. My goal is still the same, to make you feel loved and to make you smile everyday (dati every night). I dont want you to feel lonely anymore and please dont overthing about the things from the past. I just want you to look forward. As i said before (if you can still remember) we worry about the broken bridge if its infront of us, but now that broken bridge is behind us so dont look back to it. Maybe, no not maybe. This time i’ll make sure to take care of you emotionally palang since cant pa physically cuz you’re too far. I’ll be gentle this time cuz i know you’re a very soft and fragile person. So this time i wont break anything. I missed you so much Angel. Finally i got my hotdog back. Hope you’ll read this once you wake up and have a great day ahead gorgeous!!
+      </div>
+
+      <p class="footer-note hidden" id="footnote">playing: Rico Blanco — "You'll Be Safe Here"</p>
+
+      <!-- Hidden YouTube player -->
+      <div class="player-wrap">
+        <div id="player"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- YouTube IFrame API -->
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script>
+    let ytPlayer;
+    let initialized = false;
+
+    // Create the player once API is ready
+    function onYouTubeIframeAPIReady() {
+      ytPlayer = new YT.Player('player', {
+        height: '0',
+        width: '0',
+        // TIP: If you know the exact video ID you prefer, replace the playerVars 'listType' block with 'videoId: "VIDEO_ID"'
+        playerVars: {
+          autoplay: 0,
+          controls: 0,
+          modestbranding: 1,
+          rel: 0,
+          // Use a search playlist so you don't need to hardcode a video id
+          listType: 'search',
+          list: "Rico Blanco You'll Be Safe Here",
+        },
+        events: {
+          'onReady': function() { /* ready */ }
+        }
+      });
+    }
+
+    const btn = document.getElementById('openBtn');
+    const letter = document.getElementById('letter');
+    const foot = document.getElementById('footnote');
+
+    btn.addEventListener('click', async () => {
+      // Show letter with gentle animation
+      letter.style.display = 'block';
+      foot.classList.remove('hidden');
+
+      // Try playing music after a short delay to ensure user gesture is registered
+      try {
+        if (ytPlayer && ytPlayer.playVideo) {
+          ytPlayer.playVideo();
+        }
+      } catch (e) {
+        console.warn('Autoplay blocked or player not ready yet.', e);
+      }
+
+      // Disable button after first click
+      btn.disabled = true;
+      btn.style.opacity = .7;
+      btn.style.cursor = 'default';
+      btn.textContent = 'opened 💛';
+    });
+  </script>
+</body>
+</html>
